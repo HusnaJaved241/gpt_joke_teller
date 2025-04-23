@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gpt_joke_teller/services/openAI_service.dart';
 import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatefulWidget {
@@ -9,7 +10,18 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // var url = Uri.https("");
+  String _joke = 'Press the button to get the joke';
+
+  void _getJoke() async {
+    setState(() {
+      _joke = "Fetching Joke...";
+    });
+    final joke = await OpenAIService.fetchJoke();
+    setState(() {
+      _joke = joke;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          'The joke generated from ChatGPT goes here!!!',
+                          _joke,
                           style: Theme.of(context).textTheme.bodyLarge,
                           textAlign: TextAlign.center,
                         ),
@@ -51,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(height: 30),
                 Center(
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: _getJoke,
                     child: Text('Tell me a Joke'),
                   ),
                 ),
