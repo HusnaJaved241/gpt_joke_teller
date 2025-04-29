@@ -15,7 +15,10 @@ A fun and simple Flutter app that fetches and displays jokes using an API. Origi
 - 🌙 Dark navy-themed background
 
 
----
+## Screenshot
+
+![gpt_joke_teller](https://github.com/user-attachments/assets/47536d32-cdc9-4007-9814-bd9844253cf8)
+
 
 ## 🌐 APIs Used
 ✅ JokeAPI (current):
